@@ -1,6 +1,5 @@
 # Phishing Detection System Using Machine Learning
 
-A dissertation prototype developed for **CMP600 Dissertation / Extended Project**.  
 The system uses machine learning to classify email text or URLs as either **Legitimate** or **Phishing** through a simple Streamlit interface.
 
 ---
@@ -150,7 +149,7 @@ classification_report.txt
 metrics.json
 ```
 
-These files support the dissertation results and show how the model was assessed.
+These files contain evaluation metrics, graphs, and performance results used to assess the phishing detection model.
 
 ---
 
@@ -172,9 +171,9 @@ pip install -r requirements.txt
 
 ---
 
-## Dissertation demonstration
+## Demonstration
 
-For the dissertation demonstration, the prototype can be shown by:
+For demonstration, the prototype can be shown by:
 
 1. launching the Streamlit application
 2. entering a phishing-style message
@@ -187,4 +186,4 @@ For the dissertation demonstration, the prototype can be shown by:
 
 ## Project purpose
 
-This project was created to demonstrate how machine learning and natural language processing can be applied to phishing detection. It provides both a working prototype and evaluation evidence suitable for an academic dissertation project.
+This project demonstrates how machine learning and natural language processing can be applied to phishing detection through a real-time classification prototype and performance evaluation system.
