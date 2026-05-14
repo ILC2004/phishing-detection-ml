@@ -1,51 +1,127 @@
-# Phishing Detection Prototype
+# Phishing Detection System Using Machine Learning
 
-A simple dissertation prototype for phishing detection using **Python, scikit-learn, and Streamlit**.
+A dissertation prototype developed for **CMP600 Dissertation / Extended Project**.  
+The system uses machine learning to classify email text or URLs as either **Legitimate** or **Phishing** through a simple Streamlit interface.
 
 ---
 
-## What the system does
+## Project overview
 
-- Accepts **email text or a URL** as input  
-- Predicts whether the message is **Legitimate** or **Phishing**  
-- Displays a **confidence score** for the prediction  
-- Shows several **basic indicators/features** explaining the model’s decision  
+This project demonstrates how machine learning can support phishing detection by analysing textual patterns found in emails and URLs. The prototype allows a user to paste a message or URL into the interface and receive:
 
-This prototype demonstrates how machine learning can be used to automatically identify phishing emails based on textual patterns.
+- a phishing or legitimate prediction
+- a confidence score
+- simple indicators explaining why the result was produced
+
+The aim is to make phishing detection understandable for non-technical users while still showing a complete machine learning workflow.
+
+---
+
+## Key features
+
+- Email text and URL input
+- Real-time phishing classification
+- TF-IDF feature extraction
+- Logistic Regression deployment model
+- Model comparison using Logistic Regression, Linear SVM, and Random Forest
+- Confidence score output
+- Basic explanation indicators for user understanding
+- Evaluation outputs including confusion matrix, ROC curve, and precision-recall curve
+
+---
+
+## Technologies used
+
+- Python
+- Streamlit
+- scikit-learn
+- pandas
+- NumPy
+- joblib
+- matplotlib
 
 ---
 
 ## Project structure
 
+```text
+app.py                       Streamlit user interface
+train_model.py               Trains the final model
+model_utils.py               Preprocessing and feature utility functions
+evaluate_model.py            Generates evaluation metrics and graphs
+compare_models.py            Compares Logistic Regression, Linear SVM, and Random Forest
+explain_model.py             Produces feature analysis
+phishing_pipeline.joblib     Saved trained machine learning pipeline
+dataset_sample.csv           Small sample of the cleaned dataset
+model_comparison_results.csv Model comparison results
+evaluation_outputs/          Evaluation graphs and reports
+requirements.txt             Python dependencies
+README.md                    Project documentation
 ```
-app.py                     Streamlit user interface
-train_model.py             Model training script
-model_utils.py             Feature extraction and preprocessing functions
-evaluate_model.py          Model evaluation and performance graphs
-explain_model.py           Feature importance analysis
-phishing_pipeline.joblib   Saved trained machine learning model
-final_phishing_dataset.csv Cleaned dataset used for training
-requirements.txt           Python dependencies
-README.md                  Project documentation
-```
+
+The full cleaned dataset is not included in the repository because of file size limits. A sample dataset is included to show the dataset structure.
 
 ---
 
-## Running the prototype (Windows)
+## Dataset information
 
-Open **PowerShell** inside the project folder and run:
+The model was trained and evaluated using a cleaned labelled dataset containing:
+
+- **137,721 total email messages**
+- **72,289 phishing emails**
+- **65,432 legitimate emails**
+
+The dataset was split into:
+
+- **80% training data**
+- **20% testing data**
+
+This resulted in **27,545 test samples** used for final evaluation.
+
+---
+
+## Model performance
+
+The deployed Logistic Regression model achieved:
+
+| Metric | Result |
+|---|---:|
+| Accuracy | 97.6% |
+| Precision | 97.3% |
+| Recall | 98.1% |
+| F1-score | 0.977 |
+| ROC-AUC | 0.997 |
+
+Random Forest achieved slightly stronger raw performance, but Logistic Regression was selected for deployment because it provided a better balance between accuracy, speed, and interpretability.
+
+---
+
+## Running the prototype on Windows
+
+Open PowerShell inside the project folder.
+
+Create and activate a virtual environment:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
+```
+
+Install dependencies:
+
+```powershell
 pip install -r requirements.txt
-python train_model.py
+```
+
+Run the Streamlit application:
+
+```powershell
 streamlit run app.py
 ```
 
-Then open the application in your browser:
+Then open the local Streamlit link shown in PowerShell, usually:
 
-```
+```text
 http://localhost:8501
 ```
 
@@ -53,44 +129,20 @@ http://localhost:8501
 
 ## Using the prototype
 
-1. Paste an email message or URL into the input field  
-2. Click **Analyse**  
-3. The system will display:
-   - Prediction (**Legitimate or Phishing**)  
-   - Confidence score  
-   - Basic indicators explaining the prediction  
+1. Paste an email message or URL into the input box.
+2. Click **Analyse**.
+3. Review the prediction:
+   - **Legitimate**
+   - **Phishing**
+4. Check the confidence score and explanation indicators.
 
 ---
 
-## Dataset information
+## Evaluation outputs
 
-The model was trained using a cleaned dataset containing:
+The `evaluation_outputs/` folder contains evidence generated during model evaluation, such as:
 
-- **137,721 total email messages**
-- **72,289 phishing emails**
-- **65,432 legitimate emails**
-
-Due to file size limitations, the full dataset (`final_phishing_dataset.csv`) is **not included in the submission**.
-
-Instead, a **small dataset sample** is provided to demonstrate the dataset structure.
-
----
-
-## Model evaluation
-
-The trained model achieved the following performance:
-
-| Metric | Result |
-|------|------|
-| Accuracy | 97.6% |
-| Precision | 97.3% |
-| Recall | 98.1% |
-| F1-score | 0.977 |
-| ROC-AUC | 0.997 |
-
-Evaluation outputs included in the submission:
-
-```
+```text
 confusion_matrix.png
 roc_curve.png
 precision_recall_curve.png
@@ -98,40 +150,41 @@ classification_report.txt
 metrics.json
 ```
 
-These files demonstrate the performance of the phishing detection model.
+These files support the dissertation results and show how the model was assessed.
 
 ---
 
-## Recreating the Python environment
+## Files intentionally excluded from GitHub
 
-The Python virtual environment (`.venv`) is **not included in the submission** because it contains installed packages and significantly increases the project size.
+The following files/folders are not uploaded because they are large, generated, or machine-specific:
 
-The environment can be recreated using the dependencies listed in `requirements.txt`.
-
-Run:
-
+```text
+.venv/
+__pycache__/
+final_phishing_dataset.csv
 ```
+
+The environment can be recreated using:
+
+```powershell
 pip install -r requirements.txt
 ```
 
-This will install all required libraries.
-
 ---
 
-## Demonstration for the dissertation
+## Dissertation demonstration
 
-During the prototype demonstration:
+For the dissertation demonstration, the prototype can be shown by:
 
-1. Launch the Streamlit application  
-2. Paste an example **phishing message**  
-3. Paste an example **legitimate email**  
-4. Show the prediction and confidence score  
-5. Display the feature explanation panel  
-
-This demonstrates the **complete machine learning pipeline**, from input text to phishing prediction.
+1. launching the Streamlit application
+2. entering a phishing-style message
+3. showing the phishing prediction and confidence score
+4. entering a normal work-style message
+5. showing the legitimate prediction
+6. explaining how the model uses learned text patterns to classify the message
 
 ---
 
 ## Project purpose
 
-This prototype demonstrates how **machine learning techniques can be applied to detect phishing emails automatically**, helping identify suspicious messages based on linguistic patterns found in phishing attacks.
+This project was created to demonstrate how machine learning and natural language processing can be applied to phishing detection. It provides both a working prototype and evaluation evidence suitable for an academic dissertation project.
